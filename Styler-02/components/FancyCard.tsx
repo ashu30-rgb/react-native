@@ -1,22 +1,32 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
 
-export default function FancyCard() {
+interface FancyCardProps{
+    data:{
+        title: string,
+        label: string,
+        description:string,
+        footer:string,
+        imageUrl: string
+    }
+}
+
+export default function FancyCard({data}:FancyCardProps) {
   return (
     <View>
-      <Text style={styles.headingText}>FancyCard</Text>
+      <Text style={styles.headingText}>Trending Places</Text>
       <View style= {[styles.card, styles.cardElevated]}>
         <Image
         source={{
-            uri: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQQZA8s3i80S9sJnQwPMBucnYOuPjOsPWuuWKP272agfS60vRU_0o1Vzv_6W03OySwua1OyWOjO2wlK9hVL2lzOgQ"
+            uri: data.imageUrl
         }}
         style={styles.cardImage}
         />
         <View style={styles.cardBody}>
-            <Text style={styles.cardTitle}>Hawa Mahal</Text>
-            <Text style={styles.cardLabel}>Pink City, Jaipur</Text>
-            <Text style={styles.cardDescription}>Planned by Vidyadhar Bhattacharya, Jaipur holds the distinction of being the first planned city of India. Renowned globally for its coloured gems, the capital city of Rajasthan combines the allure of its ancient history with all the advantages of a metropolis. </Text>
-            <Text style={styles.cardFooter}>12 mins away</Text>
+            <Text style={styles.cardTitle}>{data.title}</Text>
+            <Text style={styles.cardLabel}>{data.label}</Text>
+            <Text style={styles.cardDescription}>{data.description}</Text>
+            <Text style={styles.cardFooter}>{data.footer}</Text>
         </View>
       </View>
     </View>
@@ -29,14 +39,52 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         paddingHorizontal:10
       },
-      card:{},
-      cardElevated:{},
-      cardImage:{
-        height: 180
+      card:{
+        // width: 350,
+        height: 360,
+        borderRadius: 6,
+        marginVertical: 12,
+        marginHorizontal: 16
       },
-      cardBody:{},
-      cardTitle:{},
-      cardLabel: {},
-      cardDescription:{},
-      cardFooter: {}
+      cardElevated:{
+        backgroundColor: '#FFFFFF',
+        color: '#000000',
+        elevation: 3,
+        shadowOffset: {
+            width: 1,
+            height: 1
+        }
+      },
+      cardImage:{
+        height: 180,
+        marginBottom: 8,
+        borderTopLeftRadius: 6,
+        borderTopRightRadius: 6
+      },
+      cardBody:{
+        flex: 1,
+        flexGrow: 1,
+        paddingHorizontal: 12
+      },
+      cardTitle:{
+        color: '#000000',
+        fontSize: 22,
+        fontWeight: 'bold',
+        marginBottom: 4
+      },
+      cardLabel: {
+        color: '#000000',
+        fontSize:14,
+        marginBottom: 6
+      },
+      cardDescription:{
+        color: '#242B2E',
+        fontSize: 12,
+        marginBottom: 12,
+        flexShrink: 1,
+        marginTop: 6
+      },
+      cardFooter: {
+        color: '#000000'
+      }
 })
