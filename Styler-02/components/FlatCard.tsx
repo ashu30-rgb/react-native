@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   cardThree:{
     backgroundColor:'#5DA3FA'
   },
-})
+}) 
