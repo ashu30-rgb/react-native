@@ -61,8 +61,8 @@ const App = () => {
       <ScrollView>
         <FlatCard />
         <ElevatedCard />
-        <ContactList/>
         <FancyCard data={cardData}/>
+        <ContactList/>
         <ActionCard/>
       </ScrollView>
     </SafeAreaView>
