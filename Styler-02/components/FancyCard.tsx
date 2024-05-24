@@ -1,34 +1,38 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react';
 
+interface CardData {
+  title: string;
+  label: string;
+  description: string;
+  footer: string;
+  imageUrl: string;
+}
+
 interface FancyCardProps{
-    data:{
-        title: string,
-        label: string,
-        description:string,
-        footer:string,
-        imageUrl: string
-    }
+    data:CardData[]
 }
 
 export default function FancyCard({data}:FancyCardProps) {
   return (
     <View>
       <Text style={styles.headingText}>Trending Places</Text>
-      <View style= {[styles.card, styles.cardElevated]}>
+      {data.map((item, index)=>{return(
+      <View key={index} style= {[styles.card, styles.cardElevated]}>
         <Image
         source={{
-            uri: data.imageUrl
+            uri: item.imageUrl
         }}
         style={styles.cardImage}
         />
         <View style={styles.cardBody}>
-            <Text style={styles.cardTitle}>{data.title}</Text>
-            <Text style={styles.cardLabel}>{data.label}</Text>
-            <Text style={styles.cardDescription}>{data.description}</Text>
-            <Text style={styles.cardFooter}>{data.footer}</Text>
+            <Text style={styles.cardTitle}>{item.title}</Text>
+            <Text style={styles.cardLabel}>{item.label}</Text>
+            <Text style={styles.cardDescription}>{item.description}</Text>
+            <Text style={styles.cardFooter}>{item.footer}</Text>
         </View>
       </View>
+      )})}
     </View>
   )
 }

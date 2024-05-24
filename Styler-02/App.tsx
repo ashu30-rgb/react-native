@@ -5,66 +5,64 @@ import ElevatedCard from './components/ElevatedCard';
 import FancyCard from './components/FancyCard';
 
 const App = () => {
+
+  const cardData = [
+    {
+      title: 'Hawa Mahal',
+      label: 'Pink City, Jaipur',
+      description:
+        'Planned by Vidyadhar Bhattacharya, Jaipur holds the distinction of being the first planned city of India.',
+      footer: '12 mins away',
+      imageUrl:
+        'https://static.toiimg.com/photo/48774245.cms',
+    },
+    {
+      title: 'Taj Mahal',
+      label: 'Agra, Uttar Pradesh',
+      description:
+        'An immense mausoleum of white marble, built in Agra by Mughal emperor Shah Jahan in memory of his beloved wife Mumtaz Mahal.',
+      footer: '30 mins away',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Taj_Mahal_%28Edited%29.jpeg/1200px-Taj_Mahal_%28Edited%29.jpeg',
+    },
+    {
+      title: 'Gateway of India',
+      label: 'Mumbai, Maharashtra',
+      description:
+        'The Gateway of India is an arch-monument built in the early twentieth century in the city of Mumbai, in the Indian state of Maharashtra.',
+      footer: '20 mins away',
+      imageUrl:
+        'https://www.theleela.com/prod/content/assets/styles/tl_1920_735/public/aio-banner/dekstop/Gateway-of-India.jpg?VersionId=ovBEK7XYSQwGwgF8grbLiVs330UArZQK&itok=lg8ZMWQq',
+    },
+    {
+      title: 'Charminar',
+      label: 'Hyderabad, Telangana',
+      description:
+        'The Charminar, constructed in 1591, is a monument and mosque located in Hyderabad, Telangana, India. The landmark has become known globally as a symbol of Hyderabad.',
+      footer: '15 mins away',
+      imageUrl:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Charminar_creative.jpg/1200px-Charminar_creative.jpg',
+    },
+    {
+      title: 'Qutub Minar',
+      label: 'Delhi',
+      description:
+        'Qutub Minar, at 73 meters, is the tallest brick minaret in the world and second highest minar in India after Fateh Burj at Mohali.',
+      footer: '25 mins away',
+      imageUrl:
+        'https://www.incredibleindia.org/content/dam/incredible-india/images/delhi/delhi/attraction/qutub-minar/qutab-minar-delhi-attr-hero.jpg.transform/optimize-large/image.jpg',
+    },
+  ];
+
   return (
     <SafeAreaView>
       <ScrollView>
         <FlatCard />
         <ElevatedCard />
         <FancyCard
-          data={{
-            title: 'Hawa Mahal',
-            label: 'Pink City, Jaipur',
-            description:
-              'Planned by Vidyadhar Bhattacharya, Jaipur holds the distinction of being the first planned city of India.',
-            footer: '12 mins away',
-            imageUrl:
-              'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQQZA8s3i80S9sJnQwPMBucnYOuPjOsPWuuWKP272agfS60vRU_0o1Vzv_6W03OySwua1OyWOjO2wlK9hVL2lzOgQ',
-          }}
+          data={cardData}
         />
-        <FancyCard
-          data={{
-            title: 'Taj Mahal',
-            label: 'Agra, Uttar Pradesh',
-            description:
-              'An immense mausoleum of white marble, built in Agra between 1631 and 1648 by order of the Mughal emperor Shah Jahan in memory of his favourite wife',
-            footer: '10 mins away',
-            imageUrl:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2imM6oIANbmbLc6SF-495SoqicNfaWtJ18xtDYRcFZw&s',
-          }}
-        />
-        <FancyCard
-          data={ {
-            title: 'Gateway of India',
-            label: 'Mumbai, Maharashtra',
-            description:
-              'The Gateway of India is an arch-monument built in the early twentieth century in the city of Mumbai, in the Indian state of Maharashtra.',
-            footer: '20 mins away',
-            imageUrl:
-              'https://img.veenaworld.com/wp-content/uploads/2021/03/Gateway-of-India-Mumbai-History-and-Heritage.jpeg',
-          }}
-        />
-        <FancyCard
-          data={{
-            title: 'Charminar',
-            label: 'Hyderabad, Telangana',
-            description:
-              'The Charminar, constructed in 1591, is a monument and mosque located in Hyderabad, Telangana, India. The landmark has become known globally as a symbol of Hyderabad.',
-            footer: '15 mins away',
-            imageUrl:
-              'https://static.toiimg.com/thumb/msid-94144996,width-1280,height-720,resizemode-72/94144996.jpg',
-          }}
-        />
-        <FancyCard
-          data={{
-            title: 'Qutub Minar',
-            label: 'Delhi',
-            description:
-              'Qutub Minar, at 73 meters, is the tallest brick minaret in the world and second highest minar in India after Fateh Burj at Mohali.',
-            footer: '25 mins away',
-            imageUrl:
-              'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201704/647_042717101905.jpg',
-          }}
-        />
+
       </ScrollView>
     </SafeAreaView>
   );
