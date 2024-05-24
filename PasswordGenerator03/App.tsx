@@ -24,12 +24,17 @@ export default function App() {
 
   }
 
-  const createPassword = (char:string)=>{
-
+  const createPassword = (char:string, len:number)=>{
+    let result = ''
+    for(let i= 0; i<len; i++){
+      const charIndex = Math.round(Math.random() * char.length);
+      result += char.charAt(charIndex)
+    }
+    return result
   }
 
   const resetPasswordState = ()=>{
-    
+
   }
 
   return (
