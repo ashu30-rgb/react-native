@@ -1,17 +1,37 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
-import CurrencyButton from './components/CurrencyButton';
+
+import React, { useState } from 'react';
+
+import {
+  FlatList,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  useColorScheme,
+  View,
+} from 'react-native';
+
+
+//Constants
 import { currencyByRupee } from './constants';
+//Component
+import CurrencyButton from './components/CurrencyButton';
+
 import Snackbar from 'react-native-snackbar';
 
-export default function App() {
 
-  const [inputValue, setInputvalue] = useState("");
-  const [resultValue, setResultValue] = useState("");
-  const [targetCurrency, setTargetCurrency] = useState("");
 
-  const buttonPressed = (targetValue: Currency)=>{
-    if(!inputValue){
+
+const App = (): JSX.Element => {
+  const [inputValue, setInputValue] = useState('')
+  const [resultValue, setResultValue] = useState('')
+  const [targetCurrency, setTargetCurrency] = useState('')
+  
+  const buttonPressed = (targetValue: Currency) => {
+    if (!inputValue) {
       return Snackbar.show({
         text: "Enter a value to convert",
         backgroundColor: "#EA7773",
@@ -20,14 +40,14 @@ export default function App() {
     }
 
     const inputAmount = parseFloat(inputValue)
-    if(!isNaN(inputAmount)){
-      const convertedValue = inputAmount * targetValue.value;
-      const result = `${targetValue.symbol} ${convertedValue.toFixed(2)} 🤑`
-      setResultValue(result);
-      setTargetCurrency(targetValue.name);
-    }else{
+    if (!isNaN(inputAmount)) {
+      const convertedValue = inputAmount * targetValue.value
+      const result = `${targetValue.symbol} ${convertedValue.toFixed(2)  }`
+      setResultValue(result)
+      setTargetCurrency(targetValue.name)
+    } else {
       return Snackbar.show({
-        text: "Not a valid number to convert",
+        text: "NOt a valid number to convert",
         backgroundColor: "#F4BE2C",
         textColor: "#000000"
       })
@@ -35,10 +55,49 @@ export default function App() {
   }
 
   return (
-    <View>
-      <Text>App</Text>
-    </View>
-  )
+    <>
+      <StatusBar/>
+      <View style={styles.container}>
+        <View style={styles.topContainer}>
+          <View style={styles.rupeesContainer}>
+            <Text style={styles.rupee}>₹</Text>
+            <TextInput
+            maxLength={14}
+            value={inputValue}
+            clearButtonMode='always' //only for iOS
+            onChangeText={setInputValue}
+            keyboardType='number-pad'
+            placeholder='Enter amount in Rupees'
+            />
+          </View>
+          {resultValue && (
+            <Text style={styles.resultTxt} >
+              {resultValue}
+            </Text>
+          )}
+        </View>
+        <View style={styles.bottomContainer}>
+          <FlatList
+          numColumns={3}
+          data={currencyByRupee}
+          keyExtractor={item => item.name}
+          renderItem={({item}) => (
+            <Pressable
+            style={[
+              styles.button, 
+              targetCurrency === item.name && styles.selected
+            ]}
+            onPress={() => buttonPressed(item)}
+            >
+              <CurrencyButton {...item} />
+            </Pressable>
+          )}
+          />
+        </View>
+      </View>
+      
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -99,3 +158,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffeaa7',
   },
 });
+
+export default App;
